@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import Navbar from './components/Navbar'
+import HomePage from './pages/HomePage'
+import BeersPage from './pages/Beers'
+import NewBeerPage from './pages/NewBeer'
+import RandomBeerPage from './pages/RandomBeer'
+import ErrorPage from './pages/ErrorPage'
+
+import { Routes, Route } from 'react-router-dom'
+
+import beersData from './projects-data.json'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+
+      <Routes>
+        {/* <Route  path="/" element={ <HomePage /> } /> */}
+
+        <Route path="/" element={<HomePageWithNavigate />} />
+
+        <Route path="/beers" element={<BeersPage beers={beersData} />} />
+
+        <Route path="/new-beer" element={<NewBeerPage />} />
+
+        <Route path="/random-beer" element={<RandomBeerPage />} />
+
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
